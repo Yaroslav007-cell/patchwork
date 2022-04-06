@@ -257,9 +257,12 @@ color_fi_b = colors_scheme[name_color_scheme]["color_fi_b"]
 imaginary_color = colors_scheme[name_color_scheme]["imaginary_color"]
 
 
-
+# version: big or small
+# def draw_dey(field, version):
 def draw_dey(field, start_x, start_y, color_square=red, color_field=grey, side=side, margin=margin):
     # pygame.draw.rect(screen, colors_tile["blue"], (start_x, start_y, field_size, field_size))
+    # side = dimensions["side"]
+    # margin = dimensions["margin"]
     for row in range(9):
         for col in range(9):
             if field[row][col] == True:
@@ -272,6 +275,8 @@ def draw_dey(field, start_x, start_y, color_square=red, color_field=grey, side=s
     pygame.display.update()
 
 def draw_mnim(field_imaginary, start_x, start_y, side=side, margin=margin, imaginary_color=pink):
+    # side = dimensions["side"]
+    # margin = dimensions["margin"]
     for row in range(9):
         for col in range(9):
             if field_imaginary[row][col] == True:
@@ -589,10 +594,10 @@ def player_actions(human):
                 # print(f'colum={colum}, row={string}')
 
                 # отрисовка действительного
-                draw_dey(field, start_x, start_y, color_field=color_fi_a, color_square=color_sq_a)
+                draw_dey(field, start_x, start_y, color_field=color_fi_a, color_square=color_sq_a, margin=margin_enlarged, side=side_enlarged)
 
                 # отрисовка мнимого
-                draw_mnim(field_imaginary, start_x, start_y, imaginary_color=imaginary_color)
+                draw_mnim(field_imaginary, start_x, start_y, imaginary_color=imaginary_color, margin=margin_enlarged, side=side_enlarged)
 
 
         # внутреннее обновление последней клетки
