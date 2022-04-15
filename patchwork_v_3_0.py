@@ -140,7 +140,7 @@ colors_tile = {
 
 
 center_const = int( 50/1980*size[0] )
-center_const = 50
+# center_const = 50
 
 
 middle_x = int( size[0]/2 )
@@ -178,10 +178,6 @@ field_imaginary_1 = mas  # мнимое поле, для выделения ку
 field_2 = mas  # видимое
 field_imaginary_2 = mas  # мнимое поле, для выделения куда ставиться тайл
 
-
-pygame.draw.line(screen, WHITE, [size[0]/2, 0], [size[0]/2, size[1]])
-pygame.draw.line(screen, WHITE, [size[0]/2-50, 0], [size[0]/2-50, size[1]])
-pygame.draw.line(screen, WHITE, [size[0]/2+50, 0], [size[0]/2+50, size[1]])
 
 
 score_1 = 0
@@ -306,18 +302,31 @@ colors_scheme = {
         "color_fi_b" : (107, 107, 107),
         "background_color" : black,
         "imaginary_color" : (155, 209, 211)
+    },
+    "Neon" : {
+        "color_sq_a" : (125, 114, 102),
+        "color_sq_b" : (222, 123, 55),
+        "color_fi_a" : (63, 70, 122),
+        "color_fi_b" : (63, 70, 122),
+        "background_color" : (38, 35, 53),
+        "imaginary_color" : (231, 235, 236)
     }
 }
 
 name_color_scheme = "Dark theme"
+name_color_scheme = "Neon"
 
 color_sq_a = colors_scheme[name_color_scheme]["color_sq_a"]
 color_sq_b = colors_scheme[name_color_scheme]["color_sq_b"]
 color_fi_a = colors_scheme[name_color_scheme]["color_fi_a"]
 color_fi_b = colors_scheme[name_color_scheme]["color_fi_b"]
-
+background_color = colors_scheme[name_color_scheme]["background_color"]
 imaginary_color = colors_scheme[name_color_scheme]["imaginary_color"]
 
+screen.fill(background_color)
+pygame.draw.line(screen, WHITE, [size[0]/2, 0], [size[0]/2, size[1]])
+pygame.draw.line(screen, WHITE, [size[0]/2-center_const, 0], [size[0]/2-center_const, size[1]])
+pygame.draw.line(screen, WHITE, [size[0]/2+center_const, 0], [size[0]/2+center_const, size[1]])
 
 # version: big or small
 # def draw_dey(field, version):
@@ -630,20 +639,20 @@ def player_actions(human):
                 # person = 2
                 # для первого
                 # print(1)
-                pygame.draw.rect(screen, black, (start_x, start_y, field_size_enlarged, field_size_enlarged))
+                pygame.draw.rect(screen, background_color, (start_x, start_y, field_size_enlarged, field_size_enlarged))
                 draw_dey(human1["field"], start_x1, start_y1, color_field=color_fi_b, color_square=color_sq_b)
                 # для второго
-                pygame.draw.rect(screen, black, (start_x2, start_y2, field_size, field_size))
+                pygame.draw.rect(screen, background_color, (start_x2, start_y2, field_size, field_size))
                 draw_dey(human2["field"], start_x2_enlaged, start_y2_enlaged, color_field=color_fi_a, color_square=color_sq_a, side=side_enlarged, margin=margin_enlarged)
 
             else:
                 # person = 1
                 # для второго
                 # print(2)
-                pygame.draw.rect(screen, black, (start_x, start_y, field_size_enlarged, field_size_enlarged))
+                pygame.draw.rect(screen, background_color, (start_x, start_y, field_size_enlarged, field_size_enlarged))
                 draw_dey(human2["field"], start_x2, start_y2, color_field=color_fi_b, color_square=color_sq_b)
                 # для первого
-                pygame.draw.rect(screen, black, (start_x1, start_y1, field_size, field_size))
+                pygame.draw.rect(screen, background_color, (start_x1, start_y1, field_size, field_size))
                 draw_dey(human1["field"], start_x1_enlaged, start_y1_enlaged, color_field=color_fi_a, color_square=color_sq_a, side=side_enlarged, margin=margin_enlarged)
 
 
